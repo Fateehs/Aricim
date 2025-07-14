@@ -1,0 +1,36 @@
+<mat-toolbar color="amber" class="navbar">
+  <img src="assets/favicon.png" alt="Arı ikonu" class="bee-icon" />
+  <span class="app-title">BeeTrack</span>
+
+  <span class="spacer"></span>
+
+  <!-- Geniş ekran menüsü -->
+  <nav class="desktop-menu">
+    <button mat-button routerLink="/">Anasayfa</button>
+    <button mat-button routerLink="/about">Hakkımızda</button>
+    <button mat-button routerLink="/contact">İletişim</button>
+  </nav>
+
+  <span class="spacer"></span>
+
+  <button mat-raised-button color="primary" routerLink="/login" class="login-btn">Giriş Yap</button>
+  <button mat-stroked-button color="primary" routerLink="/register" class="register-btn">Kayıt Ol</button>
+
+  <!-- Mobil menü butonu -->
+  <button mat-icon-button class="mobile-menu-btn" (click)="drawer.toggle()" aria-label="Menüyü aç">
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>
+
+<!-- Mobil menü drawer -->
+<mat-drawer-container class="mobile-drawer-container">
+  <mat-drawer #drawer mode="over" position="end">
+    <nav class="mobile-menu">
+      <button mat-button routerLink="/" (click)="drawer.close()">Anasayfa</button>
+      <button mat-button routerLink="/about" (click)="drawer.close()">Hakkımızda</button>
+      <button mat-button routerLink="/contact" (click)="drawer.close()">İletişim</button>
+      <button mat-raised-button color="primary" routerLink="/login" (click)="drawer.close()">Giriş Yap</button>
+      <button mat-stroked-button color="primary" routerLink="/register" (click)="drawer.close()">Kayıt Ol</button>
+    </nav>
+  </mat-drawer>
+</mat-drawer-container>

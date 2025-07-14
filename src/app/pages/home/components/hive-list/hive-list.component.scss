@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap');
+
+.hive-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  justify-content: flex-start;
+}
+
+.section-title {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.8rem;
+  color: #795548;
+  margin-bottom: 1rem;
+}
+
+.info-text {
+  font-size: 1.1rem;
+  color: #6D4C41;
+  background: #FFF3E0;
+  border-left: 5px solid #FFC107;
+  padding: 1rem;
+  border-radius: 8px;
+  max-width: 500px;
+  margin-top: 1%;
+}
+
+.hive-card {
+  width: 250px;
+  cursor: move;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 12px;
+
+  &.cdk-drag-preview {
+    transform: scale(1.05);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+    opacity: 0.95;
+    border-radius: 12px;
+  }
+
+  &.cdk-drag-placeholder {
+    opacity: 0;
+  }
+
+  &.cdk-drag-animating {
+    transition: transform 300ms ease;
+  }
+
+  mat-card {
+    background: linear-gradient(145deg, #FFF8E1, #FFECB3);
+    border: 1px solid #FFB300;
+    box-shadow: 0 4px 10px rgba(255, 193, 7, 0.2);
+    color: #3E2723;
+    font-family: 'Quicksand', sans-serif;
+    border-radius: 12px;
+    padding: 12px;
+    height: 100%;
+    transition: background 0.3s ease;
+    position: relative;
+
+    &:hover {
+      background: #FFE082;
+    }
+  }
+
+  mat-card-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #6D4C41;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &::before {
+      content: '🐝';
+      font-size: 1.3rem;
+    }
+  }
+
+  mat-card-content {
+    p {
+      font-size: 0.95rem;
+      margin: 4px 0;
+    }
+  }
+}

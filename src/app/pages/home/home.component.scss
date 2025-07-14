@@ -1,0 +1,67 @@
+.dashboard {
+  padding: 2rem;
+
+  .login-cta {
+  background: linear-gradient(135deg, #fff9e6, #fff3b0);
+  border-radius: 16px;
+  padding: 24px 32px;
+  max-width: 400px;
+  margin: 0 auto;
+  box-shadow: 0 8px 20px rgba(255, 200, 0, 0.3);
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #3a2e0f;
+
+  p {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    user-select: none;
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+    .btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 10px 24px;
+      border-radius: 30px;
+      box-shadow: 0 4px 8px rgba(255, 193, 7, 0.4);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+
+      mat-icon {
+        font-size: 20px;
+      }
+    }
+
+    .login-btn {
+      background-color: #f9a825;
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(249, 168, 37, 0.7);
+      cursor: pointer;
+
+      &:hover {
+        background-color: #c68400;
+        box-shadow: 0 6px 14px rgba(198, 132, 0, 0.8);
+      }
+    }
+
+    .register-btn {
+      border-color: #f9a825;
+      color: #f9a825;
+      cursor: pointer;
+      &:hover {
+        background-color: #f9a825;
+        color: #fff;
+      }
+    }
+  }
+}
+
+}

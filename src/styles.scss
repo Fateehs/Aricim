@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap');
+
+body {
+  background-color: #FFFDE7;
+  font-family: 'Quicksand', sans-serif;
+  margin: 0;
+}
+
+.custom-dialog-container .mat-mdc-dialog-surface {
+  background: #fffde7 !important;
+  border-radius: 64px !important;
+  padding: 2.5rem 2rem 2rem !important;
+  position: relative !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2) !important;
+  max-width: 500px !important;
+  width: 100% !important ;
+  box-sizing: border-box !important;
+  font-family: 'Segoe UI', sans-serif !important;
+}

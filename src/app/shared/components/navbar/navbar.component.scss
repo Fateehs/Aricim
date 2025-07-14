@@ -1,0 +1,87 @@
+.navbar {
+  background-color: #FFC107;
+  color: #3E2723;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+
+  .bee-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    margin-right: 12px;
+  }
+
+  .app-title {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.8rem;
+    font-weight: 700;
+    user-select: none;
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  nav.desktop-menu {
+    display: flex;
+
+    button {
+      margin: 0 8px;
+      font-weight: 600;
+      color: #3E2723;
+    }
+  }
+
+  button.login-btn,
+  button.register-btn {
+    margin-left: 8px;
+  }
+
+  /* Mobil menü butonunu gizle */
+  button.mobile-menu-btn {
+    display: none;
+  }
+}
+
+/* Mobil cihazlarda */
+
+@media (max-width: 768px) {
+  .navbar {
+    nav.desktop-menu,
+    button.login-btn,
+    button.register-btn {
+      display: none; /* Menü ve butonlar gizlenir */
+    }
+
+    button.mobile-menu-btn {
+      display: inline-flex; /* Menü butonu görünür */
+    }
+  }
+
+  .mobile-drawer-container {
+    position: fixed;
+    top: 56px; /* Toolbar yüksekliği kadar aşağıda */
+    right: 0;
+    width: 250px;
+    height: calc(100% - 56px);
+    z-index: 1000;
+
+    mat-drawer {
+      background-color: #fff8e1; /* Açık arı sarısı tonunda */
+      color: #3E2723;
+      padding: 16px;
+
+      nav.mobile-menu {
+        display: flex;
+        flex-direction: column;
+
+        button {
+          margin-bottom: 12px;
+          justify-content: flex-start;
+          color: #3E2723;
+        }
+      }
+    }
+  }
+}

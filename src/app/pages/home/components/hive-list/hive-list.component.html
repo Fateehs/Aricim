@@ -1,0 +1,31 @@
+<div *ngIf="!disabled; else guestView">
+  <h3 class="section-title">Kovanlarım</h3>
+  <div cdkDropList (cdkDropListDropped)="drop($event)" class="hive-container">
+    <div *ngFor="let hive of hives" cdkDrag class="hive-card">
+      <mat-card>
+        <mat-card-title>{{ hive.name }}</mat-card-title>
+        <mat-card-content>
+          <p>Durum: {{ hive.status }}</p>
+          <p>Bal: {{ hive.honey }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<!-- // Sahte Veri -->
+<ng-template #guestView>
+  <div cdkDropList (cdkDropListDropped)="drop($event)" class="hive-container">
+    <div *ngFor="let hive of hives" cdkDrag class="hive-card">
+      <mat-card>
+        <mat-card-title>{{ hive.name }}</mat-card-title>
+        <mat-card-content>
+          <p>Durum: {{ hive.status }}</p>
+          <p>Bal: {{ hive.honey }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  
+  <p class="info-text">Kendinize ait kovan bilgilerinizi görmek için giriş yapmalısınız.</p>
+</ng-template>

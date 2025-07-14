@@ -1,0 +1,33 @@
+<div class="dashboard">
+  <mat-card class="summary-card total">
+    <mat-icon>hive</mat-icon>
+    <div>
+      <h3>Toplam Kovan</h3>
+      <p>{{ summary.totalHives }}</p>
+    </div>
+  </mat-card>
+
+  <mat-card class="summary-card active">
+    <mat-icon color="primary">eco</mat-icon>
+    <div>
+      <h3>Aktif Kovan</h3>
+      <p>{{ summary.activeHives }}</p>
+    </div>
+  </mat-card>
+
+  <mat-card class="summary-card passive">
+    <mat-icon color="warn">highlight_off</mat-icon>
+    <div>
+      <h3>Pasif Kovan</h3>
+      <p>{{ summary.passiveHives }}</p>
+    </div>
+  </mat-card>
+
+  <mat-card class="summary-card honey">
+    <mat-icon>emoji_food_beverage</mat-icon>
+    <div>
+      <h3>Tahmini Bal</h3>
+      <p>{{ summary.totalHoney }} kg</p>
+    </div>
+  </mat-card>
+</div>

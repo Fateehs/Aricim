@@ -1,0 +1,33 @@
+<section class="dashboard">
+  <ng-container *ngIf="authService.isLoggedIn; else guestDashboard">
+    <app-hive-summary [mock]="false"></app-hive-summary>
+  </ng-container>
+
+
+
+  <ng-container *ngIf="authService.isLoggedIn; else guestView">
+    <app-hive-list [disabled]="false" [mock]="false"></app-hive-list>
+    <app-notifications></app-notifications>
+  </ng-container>
+
+  <ng-template #guestDashboard>
+    <app-hive-summary [mock]="true"></app-hive-summary>
+  </ng-template>
+
+  <ng-template #guestView>
+    <app-hive-list [disabled]="true" [mock]="true"></app-hive-list>
+
+    <div class="login-cta">
+      <p>Uygulamayı tam kullanmak için giriş yap veya kayıt ol!</p>
+      <div class="button-group">
+        <button mat-raised-button color="primary" routerLink="/login" class="btn login-btn">
+          <mat-icon>login</mat-icon> Giriş Yap
+        </button>
+        <button mat-stroked-button color="accent" routerLink="/register" class="btn register-btn">
+          <mat-icon>app_registration</mat-icon> Kayıt Ol
+        </button>
+      </div>
+    </div>
+
+  </ng-template>
+</section>
