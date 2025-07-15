@@ -7,7 +7,8 @@ const routes: Routes = [
   { path: 'contact', loadChildren: () => import('./pages/contact/contact.module').then(m => m.ContactModule) },
   { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule) },
   { path: 'register', loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterModule) },
-  { path: '**', redirectTo: '', pathMatch: 'full' } 
+  { path: 'hive-detail/:id', loadChildren: () => import('./pages/hive-detail/hive-detail.module').then(m => m.HiveDetailModule) },
+  { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
 @NgModule({

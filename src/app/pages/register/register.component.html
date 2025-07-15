@@ -1,1 +1,39 @@
-<p>register works!</p>
+<div class="register-container">
+  <h2>Kayıt Ol</h2>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Ad Soyad</mat-label>
+      <input matInput formControlName="name" />
+      <mat-error *ngIf="registerForm.get('name')?.hasError('required')">Ad Soyad gerekli</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="email" />
+      <mat-error *ngIf="registerForm.get('email')?.hasError('required')">Email gerekli</mat-error>
+      <mat-error *ngIf="registerForm.get('email')?.hasError('email')">Geçerli bir email girin</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Parola</mat-label>
+      <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" />
+      <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+        <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="registerForm.get('password')?.hasError('required')">Parola gerekli</mat-error>
+      <mat-error *ngIf="registerForm.get('password')?.hasError('minlength')">En az 6 karakter olmalı</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Parola (Tekrar)</mat-label>
+      <input matInput [type]="hideConfirmPassword ? 'password' : 'text'" formControlName="confirmPassword" />
+      <button mat-icon-button matSuffix (click)="hideConfirmPassword = !hideConfirmPassword" type="button">
+        <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="registerForm.hasError('mismatch')">Parolalar uyuşmuyor</mat-error>
+      <mat-error *ngIf="registerForm.get('confirmPassword')?.hasError('required')">Parola tekrarı gerekli</mat-error>
+    </mat-form-field>
+
+    <button mat-flat-button color="accent" class="full-width" type="submit" [disabled]="registerForm.invalid">Kayıt Ol</button>
+  </form>
+</div>

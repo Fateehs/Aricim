@@ -8,12 +8,16 @@
           <p>Durum: {{ hive.status }}</p>
           <p>Bal: {{ hive.honey }}</p>
         </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-button color="primary" (click)="goToDetail(hive.id)">
+            Detay
+          </button>
+        </mat-card-actions>
       </mat-card>
     </div>
   </div>
 </div>
 
-<!-- // Sahte Veri -->
 <ng-template #guestView>
   <div cdkDropList (cdkDropListDropped)="drop($event)" class="hive-container">
     <div *ngFor="let hive of hives" cdkDrag class="hive-card">
@@ -23,9 +27,14 @@
           <p>Durum: {{ hive.status }}</p>
           <p>Bal: {{ hive.honey }}</p>
         </mat-card-content>
+        <mat-card-actions align="end">
+          <button mat-stroked-button (click)="goToDetail(hive.id)">
+            Detay
+          </button>
+        </mat-card-actions>
       </mat-card>
     </div>
   </div>
-  
+
   <p class="info-text">Kendinize ait kovan bilgilerinizi görmek için giriş yapmalısınız.</p>
 </ng-template>

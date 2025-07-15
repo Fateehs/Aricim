@@ -13,8 +13,8 @@
 
   <span class="spacer"></span>
 
-  <button mat-raised-button color="primary" routerLink="/login" class="login-btn">Giriş Yap</button>
-  <button mat-stroked-button color="primary" routerLink="/register" class="register-btn">Kayıt Ol</button>
+  <button mat-raised-button color="primary" (click)="goToLogin()">Giriş Yap</button>
+  <button mat-stroked-button color="primary" (click)="goToRegister()">Kayıt Ol</button>
 
   <!-- Mobil menü butonu -->
   <button mat-icon-button class="mobile-menu-btn" (click)="drawer.toggle()" aria-label="Menüyü aç">

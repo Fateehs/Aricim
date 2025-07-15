@@ -1,0 +1,24 @@
+<div class="hive-detail-container" *ngIf="hive">
+  <h2>{{ hive.name }} Detayları</h2>
+
+  <div class="detail-grid">
+    <div><strong>Tipi:</strong> {{ hive.type }}</div>
+    <div><strong>Oluşturulma:</strong> {{ hive.createdAt }}</div>
+    <div><strong>Son Kontrol:</strong> {{ hive.lastInspectionDate }}</div>
+    <div><strong>Sonraki Kontrol:</strong> {{ hive.nextInspectionDate }}</div>
+    <div><strong>Ana Arı Doğum:</strong> {{ hive.queenBornDate }}</div>
+    <div><strong>Ana Arı Durumu:</strong> {{ hive.queenStatus }}</div>
+    <div><strong>Irkı:</strong> {{ hive.queenBreed }}</div>
+    <div><strong>İşaretli mi:</strong> {{ hive.isMarked ? 'Evet' : 'Hayır' }}</div>
+    <div><strong>Yeniden Ana Verme:</strong> {{ hive.requeenDate || '-' }}</div>
+    <div><strong>Petek Durumu:</strong> {{ hive.combStatus }}</div>
+    <div><strong>Çerçeve Sayısı:</strong> {{ hive.combNumber }}</div>
+    <div><strong>Bal Miktarı:</strong> {{ hive.honeyAmount }}</div>
+    <div><strong>Hasat Edilen Bal:</strong> {{ hive.harvestedHoney }}</div>
+    <div><strong>Beslenme Durumu:</strong> {{ hive.feedingStatus }}</div>
+    <div><strong>Hastalık Belirtileri:</strong> {{ hive.diseaseSigns }}</div>
+    <div><strong>Arı Davranışı:</strong> {{ hive.temperament }}</div>
+    <div><strong>Zararlılar:</strong> {{ hive.pestStatus }}</div>
+    <div><strong>Notlar:</strong> {{ hive.notes }}</div>
+  </div>
+</div>

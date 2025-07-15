@@ -1,0 +1,29 @@
+.hive-detail-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fffde7;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  font-family: 'Quicksand', sans-serif;
+
+  h2 {
+    text-align: center;
+    color: #fbc02d;
+    margin-bottom: 1.5rem;
+  }
+
+  .detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    font-size: 1.1rem;
+    color: #4e342e;
+
+    div {
+      background: #fff9c4;
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+    }
+  }
+}
