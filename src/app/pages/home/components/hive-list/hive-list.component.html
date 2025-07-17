@@ -6,7 +6,7 @@
         <mat-card-title>{{ hive.name }}</mat-card-title>
         <mat-card-content>
           <p>Durum: {{ hive.status }}</p>
-          <p>Bal: {{ hive.honey }}</p>
+          <p>Bal: {{ hive.honeyAmount }}</p>
         </mat-card-content>
         <mat-card-actions align="end">
           <button mat-button color="primary" (click)="goToDetail(hive.id)">
@@ -25,7 +25,7 @@
         <mat-card-title>{{ hive.name }}</mat-card-title>
         <mat-card-content>
           <p>Durum: {{ hive.status }}</p>
-          <p>Bal: {{ hive.honey }}</p>
+          <p>Bal: {{ hive.honeyAmount }}</p>
         </mat-card-content>
         <mat-card-actions align="end">
           <button mat-stroked-button (click)="goToDetail(hive.id)">

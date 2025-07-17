@@ -1,20 +1,11 @@
 <section class="dashboard">
-  <ng-container *ngIf="authService.isLoggedIn; else guestDashboard">
+  <ng-container *ngIf="authService.isLoggedIn$ | async; else guestView">
     <app-hive-summary [mock]="false"></app-hive-summary>
-  </ng-container>
-
-
-
-  <ng-container *ngIf="authService.isLoggedIn; else guestView">
     <app-hive-list [disabled]="false" [mock]="false"></app-hive-list>
-    <app-notifications></app-notifications>
   </ng-container>
-
-  <ng-template #guestDashboard>
-    <app-hive-summary [mock]="true"></app-hive-summary>
-  </ng-template>
 
   <ng-template #guestView>
+    <app-hive-summary [mock]="true"></app-hive-summary>
     <app-hive-list [disabled]="true" [mock]="true"></app-hive-list>
 
     <div class="login-cta">
@@ -28,6 +19,5 @@
         </button>
       </div>
     </div>
-
   </ng-template>
 </section>

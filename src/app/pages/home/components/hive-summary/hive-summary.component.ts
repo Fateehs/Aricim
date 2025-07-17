@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { HiveService } from '../../../../core/services/hive.service';
 
 @Component({
   selector: 'app-hive-summary',
@@ -15,11 +16,10 @@ export class HiveSummaryComponent implements OnInit {
     totalHoney: 0
   };
 
-  constructor() {}
+  constructor(private hiveService: HiveService) {}
 
   ngOnInit(): void {
     if (this.mock) {
-      // Misafir kullanıcı için sahte veriler
       this.summary = {
         totalHives: 3,
         activeHives: 2,
@@ -27,13 +27,15 @@ export class HiveSummaryComponent implements OnInit {
         totalHoney: 3.1
       };
     } else {
-      // Gerçek veri ileride buradan servis aracılığıyla gelecek
-      this.summary = {
-        totalHives: 12,
-        activeHives: 9,
-        passiveHives: 3,
-        totalHoney: 86.4
-      };
+      this.hiveService.getSummary().subscribe({
+        next: (data) => {
+          this.summary = data;
+        },
+        error: (err) => {
+          console.error('Summary alınamadı:', err);
+          // Hata durumunda mock veya sıfır değerler gösterebilirsin
+        }
+      });
     }
   }
 }

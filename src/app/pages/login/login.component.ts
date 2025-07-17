@@ -22,11 +22,14 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
         next: (res) => {
-          console.log('Giriş başarılı:', res);
-          // Örneğin kullanıcı girişini localStorage’a kaydedebilirsin
+          console.log('Giriş başarılı:', res.message);
+          alert(res.message);
           localStorage.setItem('isLoggedIn', 'true');
-          // Ya da token varsa onu sakla
-          // this.router.navigate(['/dashboard']); // giriş sonrası yönlendirme
+          // Eğer token varsa burada sakla:
+          // localStorage.setItem('token', res.token);
+
+          // Örnek yönlendirme:
+          // this.router.navigate(['/dashboard']);
         },
         error: (err) => {
           console.error('Giriş hatası:', err);
@@ -35,5 +38,4 @@ export class LoginComponent {
       });
     }
   }
-
 }
