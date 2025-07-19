@@ -1,16 +1,28 @@
 <div *ngIf="!disabled; else guestView">
-  <h3 class="section-title">Kovanlarım</h3>
+  <div class="header">
+    <h3 class="section-title">Kovanlarım</h3>
+    <button mat-flat-button color="primary" (click)="openCreateDialog()">
+      <mat-icon>add</mat-icon> Yeni Kovan Ekle
+    </button>
+  </div>
+
   <div cdkDropList (cdkDropListDropped)="drop($event)" class="hive-container">
     <div *ngFor="let hive of hives" cdkDrag class="hive-card">
       <mat-card>
         <mat-card-title>{{ hive.name }}</mat-card-title>
         <mat-card-content>
-          <p>Durum: {{ hive.status }}</p>
-          <p>Bal: {{ hive.honeyAmount }}</p>
+          <p><strong>Durum:</strong> {{ hive.status }}</p>
+          <p><strong>Bal:</strong> {{ hive.honeyAmount || '-' }}</p>
         </mat-card-content>
         <mat-card-actions align="end">
           <button mat-button color="primary" (click)="goToDetail(hive.id)">
             Detay
+          </button>
+          <button mat-icon-button color="accent" (click)="openEditDialog(hive)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="confirmDelete(hive.id)">
+            <mat-icon>delete</mat-icon>
           </button>
         </mat-card-actions>
       </mat-card>
@@ -19,22 +31,7 @@
 </div>
 
 <ng-template #guestView>
-  <div cdkDropList (cdkDropListDropped)="drop($event)" class="hive-container">
-    <div *ngFor="let hive of hives" cdkDrag class="hive-card">
-      <mat-card>
-        <mat-card-title>{{ hive.name }}</mat-card-title>
-        <mat-card-content>
-          <p>Durum: {{ hive.status }}</p>
-          <p>Bal: {{ hive.honeyAmount }}</p>
-        </mat-card-content>
-        <mat-card-actions align="end">
-          <button mat-stroked-button (click)="goToDetail(hive.id)">
-            Detay
-          </button>
-        </mat-card-actions>
-      </mat-card>
-    </div>
-  </div>
-
-  <p class="info-text">Kendinize ait kovan bilgilerinizi görmek için giriş yapmalısınız.</p>
+  <p>Kendinize ait kovan bilgilerinizi görmek için giriş yapmalısınız.</p>
 </ng-template>
+
+<!-- Dialoglar burada açılacak -->

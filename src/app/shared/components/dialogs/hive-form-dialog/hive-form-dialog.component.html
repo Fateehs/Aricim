@@ -1,0 +1,41 @@
+<h2 mat-dialog-title class="dialog-title">
+  <mat-icon class="bee-icon">emoji_nature</mat-icon>
+  {{ data ? 'Kovanı Düzenle' : 'Yeni Kovan Ekle' }}
+</h2>
+
+<form [formGroup]="form" (ngSubmit)="save()" class="form-container">
+
+  <div class="form-grid">
+    <mat-form-field appearance="outline" class="form-item">
+      <mat-label>Kovan Adı</mat-label>
+      <input matInput placeholder="Örn: Kovan #12" formControlName="name" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-item">
+      <mat-label>Kovan Tipi</mat-label>
+      <input matInput placeholder="Langstroth, Dadant vb." formControlName="type" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-item">
+      <mat-label>Durum</mat-label>
+      <mat-select formControlName="status">
+        <mat-option value="Active">🐝 Aktif</mat-option>
+        <mat-option value="Passive">🛑 Pasif</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-item">
+      <mat-label>Bal Miktarı (kg)</mat-label>
+      <input matInput type="number" placeholder="0.0" formControlName="honeyAmount" />
+    </mat-form-field>
+  </div>
+
+  <div class="form-actions">
+    <button mat-stroked-button color="warn" type="button" (click)="cancel()">
+      Vazgeç
+    </button>
+    <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid">
+      {{ data ? 'Güncelle' : 'Kaydet' }}
+    </button>
+  </div>
+</form>

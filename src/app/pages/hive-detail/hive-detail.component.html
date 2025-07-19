@@ -3,22 +3,23 @@
 
   <div class="detail-grid">
     <div><strong>Tipi:</strong> {{ hive.type }}</div>
-    <div><strong>Oluşturulma:</strong> {{ hive.createdAt }}</div>
-    <div><strong>Son Kontrol:</strong> {{ hive.lastInspectionDate }}</div>
-    <div><strong>Sonraki Kontrol:</strong> {{ hive.nextInspectionDate }}</div>
-    <div><strong>Ana Arı Doğum:</strong> {{ hive.queenBornDate }}</div>
+    <div><strong>Oluşturulma:</strong> {{ hive.createdAt | date: 'yyyy-MM-dd' }}</div>
+    <div><strong>Son Kontrol:</strong> {{ hive.lastInspection | date: 'yyyy-MM-dd' }}</div>
+    <div><strong>Sonraki Kontrol:</strong> {{ hive.nextInspection | date: 'yyyy-MM-dd' }}</div>
+    <div><strong>Ana Arı Doğum:</strong> {{ hive.queenBirthDate | date: 'yyyy-MM-dd' }}</div>
     <div><strong>Ana Arı Durumu:</strong> {{ hive.queenStatus }}</div>
-    <div><strong>Irkı:</strong> {{ hive.queenBreed }}</div>
+    <div><strong>Irkı:</strong> {{ hive.breed }}</div>
     <div><strong>İşaretli mi:</strong> {{ hive.isMarked ? 'Evet' : 'Hayır' }}</div>
-    <div><strong>Yeniden Ana Verme:</strong> {{ hive.requeenDate || '-' }}</div>
-    <div><strong>Petek Durumu:</strong> {{ hive.combStatus }}</div>
-    <div><strong>Çerçeve Sayısı:</strong> {{ hive.combNumber }}</div>
-    <div><strong>Bal Miktarı:</strong> {{ hive.honeyAmount }}</div>
-    <div><strong>Hasat Edilen Bal:</strong> {{ hive.harvestedHoney }}</div>
+    <div><strong>Yeniden Ana Verme:</strong> {{ hive.requeeningDate ? (hive.requeeningDate | date: 'yyyy-MM-dd') : '-'
+      }}</div>
+    <div><strong>Petek Durumu:</strong> {{ hive.combCondition }}</div>
+    <div><strong>Çerçeve Sayısı:</strong> {{ hive.frameCount }}</div>
+    <div><strong>Bal Miktarı:</strong> {{ hive.honeyAmount }} kg</div>
+    <div><strong>Hasat Edilen Bal:</strong> {{ hive.harvestedHoney }} kg</div>
     <div><strong>Beslenme Durumu:</strong> {{ hive.feedingStatus }}</div>
-    <div><strong>Hastalık Belirtileri:</strong> {{ hive.diseaseSigns }}</div>
-    <div><strong>Arı Davranışı:</strong> {{ hive.temperament }}</div>
-    <div><strong>Zararlılar:</strong> {{ hive.pestStatus }}</div>
+    <div><strong>Hastalık Belirtileri:</strong> {{ hive.diseaseSymptoms }}</div>
+    <div><strong>Arı Davranışı:</strong> {{ hive.beeBehavior }}</div>
+    <div><strong>Zararlılar:</strong> {{ hive.pests }}</div>
     <div><strong>Notlar:</strong> {{ hive.notes }}</div>
   </div>
 </div>

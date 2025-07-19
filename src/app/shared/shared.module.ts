@@ -8,12 +8,20 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { LoginRegisterDialogComponent } from './components/login-register-dialog/login-register-dialog.component';
+import { LoginRegisterDialogComponent } from './components/dialogs/login-register-dialog/login-register-dialog.component';
+import { HiveFormDialogComponent } from './components/dialogs/hive-form-dialog/hive-form-dialog.component';
+import { MatSelectModule } from '@angular/material/select';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/confirm-dialog.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    LoginRegisterDialogComponent
+    LoginRegisterDialogComponent,
+    HiveFormDialogComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +29,12 @@ import { LoginRegisterDialogComponent } from './components/login-register-dialog
     MatButtonModule,
     MatIconModule,
     MatSidenavModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule,
+    MatInputModule,
+    MatFormFieldModule,
+    ReactiveFormsModule
+
   ],
   exports: [
     CommonModule,

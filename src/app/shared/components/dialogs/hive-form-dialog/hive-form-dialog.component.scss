@@ -1,0 +1,85 @@
+/* GLOBAL BAL PETEĞİ TEMA */
+.custom-dialog-container {
+  background: linear-gradient(135deg, #fffbee, #fff6d5);
+  border-radius: 16px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  padding: 24px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* SVG BAL PETEĞİ DOKUSU */
+.custom-dialog-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill='%23f4c542' fill-opacity='0.04' d='M50 0l25 14.43v28.87L50 57.73 25 43.3V14.43L50 0z'/><path fill='%23f4c542' fill-opacity='0.04' d='M0 28.87L25 14.43v28.87L0 57.73V28.87zM100 28.87L75 14.43v28.87L100 57.73V28.87z'/></svg>");
+  background-size: 80px 80px;
+  opacity: 0.3;
+  z-index: 0;
+}
+
+
+/* Önceki stiller (form alanları vs.) */
+.dialog-title {
+  display: flex;
+  align-items: center;
+  font-size: 22px;
+  font-weight: bold;
+  color: #e08e0b;
+  gap: 8px;
+  margin-bottom: 8px;
+  z-index: 1;
+  position: relative;
+}
+
+.bee-icon {
+  color: #f4c542;
+  font-size: 28px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 8px;
+  z-index: 1;
+  position: relative;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-item {
+  width: 100%;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+button[mat-flat-button] {
+  background-color: #f4c542;
+  color: #000;
+  font-weight: 600;
+}
+
+button[mat-flat-button]:hover {
+  background-color: #e08e0b;
+  color: white;
+}
+
+button[mat-stroked-button] {
+  border-color: #f4c542;
+  color: #e08e0b;
+}
