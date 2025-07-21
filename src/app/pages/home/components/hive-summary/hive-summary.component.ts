@@ -19,6 +19,10 @@ export class HiveSummaryComponent implements OnInit {
   constructor(private hiveService: HiveService) {}
 
   ngOnInit(): void {
+    this.loadSummary();
+  }
+
+  loadSummary() {
     if (this.mock) {
       this.summary = {
         totalHives: 3,
@@ -33,9 +37,13 @@ export class HiveSummaryComponent implements OnInit {
         },
         error: (err) => {
           console.error('Summary alınamadı:', err);
-          // Hata durumunda mock veya sıfır değerler gösterebilirsin
         }
       });
     }
+  }
+
+  refresh() {
+    this.loadSummary();
+    console.log("yenilendi");
   }
 }

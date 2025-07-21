@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../core/services/auth.service';
+import { SnackbarService } from '../../core/services/snackbar.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ export class LoginComponent {
   loginForm: FormGroup;
   hidePassword = true;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private snackbar: SnackbarService) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
@@ -22,14 +23,9 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
         next: (res) => {
-          console.log('Giriş başarılı:', res.message);
-          alert(res.message);
+          this.snackbar.show("Giriş Başarılı!");
           localStorage.setItem('isLoggedIn', 'true');
-          // Eğer token varsa burada sakla:
-          // localStorage.setItem('token', res.token);
-
-          // Örnek yönlendirme:
-          // this.router.navigate(['/dashboard']);
+          
         },
         error: (err) => {
           console.error('Giriş hatası:', err);

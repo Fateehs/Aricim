@@ -15,13 +15,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/confirm-dialog.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     LoginRegisterDialogComponent,
     HiveFormDialogComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    SpinnerComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +37,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatSelectModule,
     MatInputModule,
     MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule
 
   ],
   exports: [
@@ -42,7 +48,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatButtonModule,
     MatIconModule,
     NavbarComponent,
-    MatDialogModule
+    MatDialogModule,
+    SpinnerComponent
   ]
 })
 export class SharedModule { }

@@ -14,7 +14,41 @@ body {
   position: relative !important;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2) !important;
   max-width: 500px !important;
-  width: 100% !important ;
+  width: 100% !important;
   box-sizing: border-box !important;
   font-family: 'Segoe UI', sans-serif !important;
+}
+
+.custom-snackbar.mat-mdc-snack-bar-container {
+  --mdc-snackbar-container-color: #fff8e1;
+  --mdc-snackbar-supporting-text-color: #5a3e1b;
+  --mat-snack-bar-button-color: #a05a0b;
+  font-weight: 600;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(160, 90, 11, 0.25);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 300px;
+}
+
+.custom-snackbar.mat-mdc-snack-bar-container .mat-mdc-snack-bar-label {
+  flex-grow: 1;
+  font-size: 1rem;
+  color: var(--mdc-snackbar-supporting-text-color);
+}
+
+.custom-snackbar.mat-mdc-snack-bar-container .mat-mdc-snack-bar-action {
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+  padding: 6px 12px;
+}
+
+.custom-snackbar.mat-mdc-snack-bar-container .mat-mdc-snack-bar-action:hover {
+  background-color: #a05a0b33;
 }

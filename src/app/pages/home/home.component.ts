@@ -1,8 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from '../../core/services/auth.service';
 import { LoginRegisterDialogComponent } from '../../shared/components/dialogs/login-register-dialog/login-register-dialog.component';
 import { Subscription } from 'rxjs';
+import { HiveSummaryComponent } from './components/hive-summary/hive-summary.component';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +11,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
+  @ViewChild('hiveSummary') hiveSummary?: HiveSummaryComponent;
   private authSubscription?: Subscription;
 
   constructor(
@@ -23,6 +25,11 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.openLoginRegisterDialog();
       }
     });
+  }
+
+  onHiveListChanged(){
+    this.hiveSummary?.refresh();
+    console.log("yenilendi test");
   }
 
   openLoginRegisterDialog() {

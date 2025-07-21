@@ -1,13 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap');
 
-.hive-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1.5rem;
-  justify-content: flex-start;
-}
-
+/* Sayfa başlığı */
 .section-title {
   font-family: 'Pacifico', cursive;
   font-size: 1.8rem;
@@ -15,6 +8,7 @@
   margin-bottom: 1rem;
 }
 
+/* Bilgi mesajı */
 .info-text {
   font-size: 1.1rem;
   color: #6D4C41;
@@ -26,6 +20,48 @@
   margin-top: 1%;
 }
 
+.add-hive-button {
+  background-color: #FFD54F;
+  color: #4E342E;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  border-radius: 8px;
+  padding: 8px 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: background 0.25s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #FFCA28;
+    transform: translateY(-1px);
+  }
+
+  mat-icon {
+    font-size: 24px;
+  }
+}
+
+/* Kovan kartlarını saran yapı */
+.hive-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  justify-content: flex-start;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between; /* Başlık solda, buton sağda */
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/* Her bir kart */
 .hive-card {
   width: 250px;
   cursor: move;
@@ -36,7 +72,6 @@
     transform: scale(1.05);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
     opacity: 0.95;
-    border-radius: 12px;
   }
 
   &.cdk-drag-placeholder {
@@ -55,9 +90,9 @@
     font-family: 'Quicksand', sans-serif;
     border-radius: 12px;
     padding: 12px;
-    height: 100%;
-    transition: background 0.3s ease;
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 
     &:hover {
       background: #FFE082;
@@ -78,10 +113,65 @@
     }
   }
 
-  mat-card-content {
-    p {
-      font-size: 0.95rem;
-      margin: 4px 0;
+  mat-card-content p {
+    font-size: 0.95rem;
+    margin: 4px 0;
+  }
+
+  mat-card-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 8px;
+    padding: 0;
+    flex-wrap: wrap;
+
+    button {
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 600;
+      font-size: 0.8rem;
+      border-radius: 6px;
+      padding: 4px 10px;
+      min-width: unset;
+      height: 32px;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+
+    mat-icon {
+      font-size: 18px;
+    }
+
+    /* Buton renkleri */
+    button[color="primary"] {
+      background-color: #FFE0B2;
+      color: #5D4037;
+
+      &:hover {
+        background-color: #FFD180;
+      }
+    }
+
+    button[color="accent"] {
+      background-color: #B2EBF2;
+      color: #004D40;
+
+      &:hover {
+        background-color: #80DEEA;
+      }
+    }
+
+    button[color="warn"] {
+      background-color: #FFCDD2;
+      color: #C62828;
+
+      &:hover {
+        background-color: #EF9A9A;
+      }
     }
   }
 }

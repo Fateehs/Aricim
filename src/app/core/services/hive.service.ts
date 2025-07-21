@@ -15,8 +15,8 @@ export interface HiveSummary {
 })
 export class HiveService {
   private apiUrl = 'https://localhost:7033/api/hives';  // Backend hive API endpoint
-
-  constructor(private http: HttpClient) {}
+  
+  constructor(private http: HttpClient) { }
 
   // Tüm kovanları getir
   getAllHives(): Observable<Hive[]> {

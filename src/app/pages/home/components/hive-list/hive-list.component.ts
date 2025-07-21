@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -6,6 +6,8 @@ import { HiveService } from '../../../../core/services/hive.service';
 import { Hive } from '../../../../models/hive/hive.model';
 import { HiveFormDialogComponent } from '../../../../shared/components/dialogs/hive-form-dialog/hive-form-dialog.component';
 import { ConfirmDialogComponent, ConfirmDialogData } from '../../../../shared/components/dialogs/confirm-dialog/confirm-dialog.component';
+import { MOCK_HIVES } from '../../../../models/hive/mock-hives';
+import { SpinnerService } from '../../../../core/services/spinner.service';
 
 @Component({
   selector: 'app-hive-list',
@@ -16,26 +18,22 @@ export class HiveListComponent implements OnInit {
   @Input() disabled: boolean = false;
   @Input() mock: boolean = false;
 
+  @Output() listChanged = new EventEmitter<void>();
+
   hives: Hive[] = [];
-  
+
   constructor(
     private router: Router,
     private hiveService: HiveService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private spinner: SpinnerService
   ) { }
 
   ngOnInit(): void {
-    if (this.mock) {
-      this.hives = [
-        { id: '1', name: 'Kovan A', status: 'Aktif', honeyAmount: 1.2, type: 'Standart', createdAt: '2025-01-01T00:00:00Z', userId: 'user1' },
-        { id: '2', name: 'Kovan B', status: 'Dinleniyor', honeyAmount: 0.8, type: 'Standart', createdAt: '2025-01-02T00:00:00Z', userId: 'user1' },
-        { id: '3', name: 'Kovan C', status: 'Hasat Yapıldı', honeyAmount: 1.1, type: 'Standart', createdAt: '2025-01-03T00:00:00Z', userId: 'user1' }
-      ];
-    } else {
+    this.hives = this.mock ? MOCK_HIVES : [];
+    if (!this.mock) {
       this.hiveService.getAllHives().subscribe({
-        next: (data) => {
-          this.hives = data;
-        },
+        next: (data) => { this.hives = data; },
         error: (err) => {
           console.error('Kovanlar alınamadı:', err);
           this.hives = [];
@@ -79,12 +77,6 @@ export class HiveListComponent implements OnInit {
           }
         });
       }
-    });
-  }
-
-  loadHives() {
-    this.hiveService.getAllHives().subscribe(hives => {
-      this.hives = hives;
     });
   }
 
@@ -141,12 +133,20 @@ export class HiveListComponent implements OnInit {
           next: () => {
             // Başarıyla silindi, listeyi güncelle
             this.hives = this.hives.filter(h => h.id !== hiveId);
+            this.loadHives();
           },
           error: err => {
             console.error('Silme başarısız:', err);
           }
         });
       }
+    });
+  }
+
+  loadHives() {
+    this.hiveService.getAllHives().subscribe(hives => {
+      this.hives = hives;
+      this.listChanged.emit(); // This trigger updates dashboard
     });
   }
 }

@@ -1,7 +1,7 @@
 <section class="dashboard">
   <ng-container *ngIf="authService.isLoggedIn$ | async; else guestView">
-    <app-hive-summary [mock]="false"></app-hive-summary>
-    <app-hive-list [disabled]="false" [mock]="false"></app-hive-list>
+    <app-hive-summary #hiveSummary [mock]="false"></app-hive-summary>
+    <app-hive-list [disabled]="false" [mock]="false" (listChanged)="onHiveListChanged()"></app-hive-list>
   </ng-container>
 
   <ng-template #guestView>

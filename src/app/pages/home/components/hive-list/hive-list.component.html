@@ -1,12 +1,12 @@
-<div *ngIf="!disabled; else guestView">
-  <div class="header">
+<div *ngIf="!disabled || mock">
+  <div class="header" *ngIf="!disabled">
     <h3 class="section-title">Kovanlarım</h3>
-    <button mat-flat-button color="primary" (click)="openCreateDialog()">
+    <button class="add-hive-button" mat-flat-button (click)="openCreateDialog()">
       <mat-icon>add</mat-icon> Yeni Kovan Ekle
     </button>
   </div>
 
-  <div cdkDropList (cdkDropListDropped)="drop($event)" class="hive-container">
+  <div class="hive-container" cdkDropList (cdkDropListDropped)="drop($event)">
     <div *ngFor="let hive of hives" cdkDrag class="hive-card">
       <mat-card>
         <mat-card-title>{{ hive.name }}</mat-card-title>
@@ -14,15 +14,15 @@
           <p><strong>Durum:</strong> {{ hive.status }}</p>
           <p><strong>Bal:</strong> {{ hive.honeyAmount || '-' }}</p>
         </mat-card-content>
-        <mat-card-actions align="end">
+        <mat-card-actions align="end" *ngIf="!disabled">
           <button mat-button color="primary" (click)="goToDetail(hive.id)">
-            Detay
+            <mat-icon>visibility</mat-icon> Detay
           </button>
-          <button mat-icon-button color="accent" (click)="openEditDialog(hive)">
-            <mat-icon>edit</mat-icon>
+          <button mat-button color="accent" (click)="openEditDialog(hive)">
+            <mat-icon>edit</mat-icon> Düzenle
           </button>
-          <button mat-icon-button color="warn" (click)="confirmDelete(hive.id)">
-            <mat-icon>delete</mat-icon>
+          <button mat-button color="warn" (click)="confirmDelete(hive.id)">
+            <mat-icon>delete</mat-icon> Sil
           </button>
         </mat-card-actions>
       </mat-card>
@@ -30,8 +30,6 @@
   </div>
 </div>
 
-<ng-template #guestView>
+<div *ngIf="mock" class="info-text">
   <p>Kendinize ait kovan bilgilerinizi görmek için giriş yapmalısınız.</p>
-</ng-template>
-
-<!-- Dialoglar burada açılacak -->
+</div>
