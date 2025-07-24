@@ -1,25 +1,137 @@
 <div class="hive-detail-container" *ngIf="hive">
-  <h2>{{ hive.name }} Detayları</h2>
+  <div class="header" style="display: flex; justify-content: space-between; align-items: center;">
+    <h2>{{ hive.name }} Detayları</h2>
+    <button mat-flat-button color="primary" (click)="toggleEditMode()">
+      <mat-icon>{{ editMode ? 'close' : 'edit' }}</mat-icon>
+      {{ editMode ? 'İptal' : 'Düzenle' }}
+    </button>
+  </div>
 
-  <div class="detail-grid">
-    <div><strong>Tipi:</strong> {{ hive.type }}</div>
-    <div><strong>Oluşturulma:</strong> {{ hive.createdAt | date: 'yyyy-MM-dd' }}</div>
-    <div><strong>Son Kontrol:</strong> {{ hive.lastInspection | date: 'yyyy-MM-dd' }}</div>
-    <div><strong>Sonraki Kontrol:</strong> {{ hive.nextInspection | date: 'yyyy-MM-dd' }}</div>
-    <div><strong>Ana Arı Doğum:</strong> {{ hive.queenBirthDate | date: 'yyyy-MM-dd' }}</div>
-    <div><strong>Ana Arı Durumu:</strong> {{ hive.queenStatus }}</div>
-    <div><strong>Irkı:</strong> {{ hive.breed }}</div>
-    <div><strong>İşaretli mi:</strong> {{ hive.isMarked ? 'Evet' : 'Hayır' }}</div>
-    <div><strong>Yeniden Ana Verme:</strong> {{ hive.requeeningDate ? (hive.requeeningDate | date: 'yyyy-MM-dd') : '-'
-      }}</div>
-    <div><strong>Petek Durumu:</strong> {{ hive.combCondition }}</div>
-    <div><strong>Çerçeve Sayısı:</strong> {{ hive.frameCount }}</div>
-    <div><strong>Bal Miktarı:</strong> {{ hive.honeyAmount }} kg</div>
-    <div><strong>Hasat Edilen Bal:</strong> {{ hive.harvestedHoney }} kg</div>
-    <div><strong>Beslenme Durumu:</strong> {{ hive.feedingStatus }}</div>
-    <div><strong>Hastalık Belirtileri:</strong> {{ hive.diseaseSymptoms }}</div>
-    <div><strong>Arı Davranışı:</strong> {{ hive.beeBehavior }}</div>
-    <div><strong>Zararlılar:</strong> {{ hive.pests }}</div>
-    <div><strong>Notlar:</strong> {{ hive.notes }}</div>
+  <form *ngIf="editMode && editableHive" (ngSubmit)="saveChanges()" #editForm="ngForm" novalidate>
+    <div class="detail-grid">
+      <div>
+        <label for="type"><strong>Tipi:</strong></label>
+        <input id="type" type="text" name="type" [(ngModel)]="editableHive.type" required />
+      </div>
+
+      <div>
+        <label for="createdAt"><strong>Oluşturulma:</strong></label>
+        <input id="createdAt" type="date" name="createdAt" [(ngModel)]="editableHive.createdAt" required />
+      </div>
+
+      <div>
+        <label for="lastInspection"><strong>Son Kontrol:</strong></label>
+        <input id="lastInspection" type="date" name="lastInspection" [(ngModel)]="editableHive.lastInspection" />
+      </div>
+
+      <div>
+        <label for="nextInspection"><strong>Sonraki Kontrol:</strong></label>
+        <input id="nextInspection" type="date" name="nextInspection" [(ngModel)]="editableHive.nextInspection" />
+      </div>
+
+      <div>
+        <label for="queenBirthDate"><strong>Ana Arı Doğum:</strong></label>
+        <input id="queenBirthDate" type="date" name="queenBirthDate" [(ngModel)]="editableHive.queenBirthDate" />
+      </div>
+
+      <div>
+        <label for="queenStatus"><strong>Ana Arı Durumu:</strong></label>
+        <input id="queenStatus" type="text" name="queenStatus" [(ngModel)]="editableHive.queenStatus" />
+      </div>
+
+      <div>
+        <label for="breed"><strong>Irkı:</strong></label>
+        <input id="breed" type="text" name="breed" [(ngModel)]="editableHive.breed" />
+      </div>
+
+      <div>
+        <label for="isMarked"><strong>İşaretli mi:</strong></label>
+        <select id="isMarked" name="isMarked" [(ngModel)]="editableHive.isMarked">
+          <option [ngValue]="true">Evet</option>
+          <option [ngValue]="false">Hayır</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="requeeningDate"><strong>Yeniden Ana Verme:</strong></label>
+        <input id="requeeningDate" type="date" name="requeeningDate" [(ngModel)]="editableHive.requeeningDate" />
+      </div>
+
+      <div>
+        <label for="combCondition"><strong>Petek Durumu:</strong></label>
+        <input id="combCondition" type="text" name="combCondition" [(ngModel)]="editableHive.combCondition" />
+      </div>
+
+      <div>
+        <label for="frameCount"><strong>Çerçeve Sayısı:</strong></label>
+        <input id="frameCount" type="number" name="frameCount" [(ngModel)]="editableHive.frameCount" min="0" />
+      </div>
+
+      <div>
+        <label for="honeyAmount"><strong>Bal Miktarı (kg):</strong></label>
+        <input id="honeyAmount" type="number" step="0.01" name="honeyAmount" [(ngModel)]="editableHive.honeyAmount"
+          min="0" />
+      </div>
+
+      <div>
+        <label for="harvestedHoney"><strong>Hasat Edilen Bal (kg):</strong></label>
+        <input id="harvestedHoney" type="number" step="0.01" name="harvestedHoney"
+          [(ngModel)]="editableHive.harvestedHoney" min="0" />
+      </div>
+
+      <div>
+        <label for="feedingStatus"><strong>Beslenme Durumu:</strong></label>
+        <input id="feedingStatus" type="text" name="feedingStatus" [(ngModel)]="editableHive.feedingStatus" />
+      </div>
+
+      <div>
+        <label for="diseaseSymptoms"><strong>Hastalık Belirtileri:</strong></label>
+        <input id="diseaseSymptoms" type="text" name="diseaseSymptoms" [(ngModel)]="editableHive.diseaseSymptoms" />
+      </div>
+
+      <div>
+        <label for="beeBehavior"><strong>Arı Davranışı:</strong></label>
+        <input id="beeBehavior" type="text" name="beeBehavior" [(ngModel)]="editableHive.beeBehavior" />
+      </div>
+
+      <div>
+        <label for="pests"><strong>Zararlılar:</strong></label>
+        <input id="pests" type="text" name="pests" [(ngModel)]="editableHive.pests" />
+      </div>
+
+      <div style="grid-column: span 2;">
+        <label for="notes"><strong>Notlar:</strong></label>
+        <textarea id="notes" name="notes" rows="3" [(ngModel)]="editableHive.notes"></textarea>
+      </div>
+    </div>
+
+    <div style="margin-top: 1rem; text-align: center;">
+      <button mat-flat-button color="primary" type="submit" [disabled]="!editForm.form.valid">Kaydet</button>
+      <button mat-flat-button color="warn" type="button" (click)="toggleEditMode()">İptal</button>
+    </div>
+  </form>
+
+  <div *ngIf="!editMode">
+    <div class="detail-grid">
+      <div><strong>Tipi:</strong> {{ hive.type }}</div>
+      <div><strong>Oluşturulma:</strong> {{ hive.createdAt | date: 'yyyy-MM-dd' }}</div>
+      <div><strong>Son Kontrol:</strong> {{ hive.lastInspection | date: 'yyyy-MM-dd' }}</div>
+      <div><strong>Sonraki Kontrol:</strong> {{ hive.nextInspection | date: 'yyyy-MM-dd' }}</div>
+      <div><strong>Ana Arı Doğum:</strong> {{ hive.queenBirthDate | date: 'yyyy-MM-dd' }}</div>
+      <div><strong>Ana Arı Durumu:</strong> {{ hive.queenStatus }}</div>
+      <div><strong>Irkı:</strong> {{ hive.breed }}</div>
+      <div><strong>İşaretli mi:</strong> {{ hive.isMarked ? 'Evet' : 'Hayır' }}</div>
+      <div><strong>Yeniden Ana Verme:</strong> {{ hive.requeeningDate ? (hive.requeeningDate | date: 'yyyy-MM-dd') : '-'
+        }}</div>
+      <div><strong>Petek Durumu:</strong> {{ hive.combCondition }}</div>
+      <div><strong>Çerçeve Sayısı:</strong> {{ hive.frameCount }}</div>
+      <div><strong>Bal Miktarı:</strong> {{ hive.honeyAmount }} kg</div>
+      <div><strong>Hasat Edilen Bal:</strong> {{ hive.harvestedHoney }} kg</div>
+      <div><strong>Beslenme Durumu:</strong> {{ hive.feedingStatus }}</div>
+      <div><strong>Hastalık Belirtileri:</strong> {{ hive.diseaseSymptoms }}</div>
+      <div><strong>Arı Davranışı:</strong> {{ hive.beeBehavior }}</div>
+      <div><strong>Zararlılar:</strong> {{ hive.pests }}</div>
+      <div style="grid-column: span 2;"><strong>Notlar:</strong> {{ hive.notes }}</div>
+    </div>
   </div>
 </div>

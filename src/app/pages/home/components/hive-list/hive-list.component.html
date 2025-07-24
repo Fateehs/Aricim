@@ -1,35 +1,35 @@
 <div *ngIf="!disabled || mock">
   <div class="header" *ngIf="!disabled">
     <h3 class="section-title">Kovanlarım</h3>
-    <button class="add-hive-button" mat-flat-button (click)="openCreateDialog()">
-      <mat-icon>add</mat-icon> Yeni Kovan Ekle
-    </button>
+    <div class="header-buttons">
+      <button class="add-hive-button" mat-flat-button (click)="openCreateDialog()">
+        <mat-icon>add</mat-icon> Yeni Kovan Ekle
+      </button>
+      <button class="edit-mode-button" mat-stroked-button (click)="toggleEditMode()">
+        <mat-icon>{{ isEditMode ? 'close' : 'edit' }}</mat-icon>
+        {{ isEditMode ? 'Düzenlemeyi Kapat' : 'Düzenle' }}
+      </button>
+    </div>
   </div>
 
   <div class="hive-container" cdkDropList (cdkDropListDropped)="drop($event)">
     <div *ngFor="let hive of hives" cdkDrag class="hive-card">
-      <mat-card>
+      <mat-card (click)="goToDetail(hive.id)" [class.edit-mode]="isEditMode">
         <mat-card-title>{{ hive.name }}</mat-card-title>
         <mat-card-content>
           <p><strong>Durum:</strong> {{ hive.status }}</p>
           <p><strong>Bal:</strong> {{ hive.honeyAmount || '-' }}</p>
         </mat-card-content>
-        <mat-card-actions align="end" *ngIf="!disabled">
-          <button mat-button color="primary" (click)="goToDetail(hive.id)">
-            <mat-icon>visibility</mat-icon> Detay
-          </button>
-          <button mat-button color="accent" (click)="openEditDialog(hive)">
+
+        <mat-card-actions align="end" *ngIf="isEditMode && !disabled">
+          <button mat-button color="accent" (click)="openEditDialog(hive); $event.stopPropagation()">
             <mat-icon>edit</mat-icon> Düzenle
           </button>
-          <button mat-button color="warn" (click)="confirmDelete(hive.id)">
+          <button mat-button color="warn" (click)="confirmDelete(hive.id); $event.stopPropagation()">
             <mat-icon>delete</mat-icon> Sil
           </button>
         </mat-card-actions>
       </mat-card>
     </div>
   </div>
-</div>
-
-<div *ngIf="mock" class="info-text">
-  <p>Kendinize ait kovan bilgilerinizi görmek için giriş yapmalısınız.</p>
 </div>

@@ -22,12 +22,18 @@ export class HiveListComponent implements OnInit {
 
   hives: Hive[] = [];
 
+  isEditMode = false;
+
   constructor(
     private router: Router,
     private hiveService: HiveService,
     private dialog: MatDialog,
     private spinner: SpinnerService
   ) { }
+
+  toggleEditMode() {
+    this.isEditMode = !this.isEditMode;
+  }
 
   ngOnInit(): void {
     this.hives = this.mock ? MOCK_HIVES : [];
@@ -51,9 +57,13 @@ export class HiveListComponent implements OnInit {
   }
 
   goToDetail(hiveId: string) {
-    this.router.navigate(['/hive-detail', hiveId], {
-      state: { mock: this.mock }
-    });
+    if (this.isEditMode) {
+      return;
+    } else {
+      this.router.navigate(['/hive-detail', hiveId], {
+        state: { mock: this.mock }
+      });
+    }
   }
 
   openCreateDialog() {

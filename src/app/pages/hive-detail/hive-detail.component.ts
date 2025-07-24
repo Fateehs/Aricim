@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HiveService } from '../../core/services/hive.service';
-import { Hive } from '../../models/hive/hive.model';  // model yolunu kendi projene göre ayarla
+import { Hive } from '../../models/hive/hive.model';  // Model yolunu projene göre ayarla
 
 @Component({
   selector: 'app-hive-detail',
@@ -9,8 +9,10 @@ import { Hive } from '../../models/hive/hive.model';  // model yolunu kendi proj
   styleUrls: ['./hive-detail.component.scss']
 })
 export class HiveDetailComponent implements OnInit {
-  hive?: Hive;   // 'any' yerine model tipi
+  hive?: Hive;
+  editableHive?: Hive;
   mock: boolean = false;
+  editMode = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,8 +30,8 @@ export class HiveDetailComponent implements OnInit {
           name: 'Kovan A',
           type: 'Langstroth',
           createdAt: '2024-01-15',
-          status: 'Active',         // Ekle
-          userId: 'some-user-id',   // Ekle (string olarak uygun guid formatı)
+          status: 'Active',
+          userId: 'some-user-id',
           lastInspection: '2025-06-10',
           nextInspection: '2025-07-20',
           queenBirthDate: '2024-03-01',
@@ -49,30 +51,44 @@ export class HiveDetailComponent implements OnInit {
         }
       ];
       this.hive = mockHives.find(h => h.id === id);
+      this.resetEditable();
     } else {
       this.hiveService.getHiveById(id).subscribe({
         next: (data) => {
-          // Eğer backend ile frontend property isimleri farklıysa burada maple
-          this.hive = {
-            ...data,
-            lastInspection: data.lastInspection,
-            nextInspection: data.nextInspection,
-            queenBirthDate: data.queenBirthDate,
-            queenStatus: data.breed,
-            requeeningDate: data.requeeningDate,
-            combCondition: data.combCondition,
-            frameCount: data.frameCount,
-            honeyAmount: data.honeyAmount,
-            harvestedHoney: data.harvestedHoney,
-            feedingStatus: data.feedingStatus,
-            diseaseSymptoms: data.diseaseSymptoms,
-            beeBehavior: data.beeBehavior,
-            pests: data.pests,
-            notes: data.notes
-          };
+          this.hive = data;
+          this.resetEditable();
         },
         error: (err) => console.error('Kovan detayları alınırken hata oluştu:', err)
       });
     }
   }
+
+  toggleEditMode() {
+    this.editMode = !this.editMode;
+    if (!this.editMode) {
+      this.resetEditable();
+    }
+  }
+
+  resetEditable() {
+    this.editableHive = this.hive ? JSON.parse(JSON.stringify(this.hive)) : undefined;
+  }
+
+  saveChanges() {
+    if (!this.editableHive) return;
+
+    this.hiveService.updateHive(this.editableHive.id, this.editableHive).subscribe({
+      next: (updatedHive) => {
+        this.hive = updatedHive; // Backend’den dönen güncel veriyi ata
+        this.editMode = false;
+        this.resetEditable();
+        // İstersen burada Snackbar/Toast ile "Güncelleme başarılı" bildirimi verebilirsin
+      },
+      error: (err) => {
+        console.error('Güncelleme başarısız:', err);
+        // Hata mesajı gösterilebilir
+      }
+    });
+  }
+
 }

@@ -45,6 +45,36 @@
   }
 }
 
+.edit-mode-button {
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  padding: 8px 16px;
+  color: #4E342E;
+  border-color: #FFD54F;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.25s ease;
+
+  &:hover {
+    background-color: #FFF9C4;
+  }
+
+  mat-icon {
+    font-size: 24px;
+  }
+}
+
+.hive-card.edit-mode mat-card {
+  cursor: default;
+  /* Düzenleme modunda detay açılmasın */
+  background-color: #fffde7;
+  transition: background-color 0.3s ease;
+}
+
 /* Kovan kartlarını saran yapı */
 .hive-container {
   display: flex;
@@ -56,15 +86,22 @@
 
 .header {
   display: flex;
-  justify-content: space-between; /* Başlık solda, buton sağda */
+  justify-content: space-between;
+  /* Başlık solda, buton sağda */
   align-items: center;
   margin-bottom: 1rem;
+}
+
+.header-buttons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
 }
 
 /* Her bir kart */
 .hive-card {
   width: 250px;
-  cursor: move;
+  cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border-radius: 12px;
 
@@ -125,6 +162,7 @@
     margin-top: 8px;
     padding: 0;
     flex-wrap: wrap;
+    animation: fadeInSlideDown 0.3s ease forwards;
 
     button {
       font-family: 'Quicksand', sans-serif;
@@ -173,5 +211,29 @@
         background-color: #EF9A9A;
       }
     }
+  }
+}
+
+@keyframes fadeInSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOutSlideUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
   }
 }
