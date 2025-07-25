@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap');
+
+.contact-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff8e1;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(255, 193, 7, 0.3);
+  font-family: 'Quicksand', sans-serif;
+
+  .section-title {
+    font-family: 'Pacifico', cursive;
+    font-size: 2.2rem;
+    color: #795548;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  .subtitle {
+    text-align: center;
+    font-size: 1rem;
+    color: #6d4c41;
+    margin-bottom: 1.5rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+
+    mat-form-field {
+      width: 100%;
+
+      mat-label {
+        color: #a57c00;
+        font-weight: 600;
+      }
+
+      input,
+      textarea {
+        font-family: 'Quicksand', sans-serif;
+      }
+    }
+
+    button {
+      align-self: center;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 700;
+      font-size: 1rem;
+      background: #ffca28;
+      color: #4e342e;
+      border-radius: 8px;
+      padding: 10px 24px;
+      box-shadow: 0 4px 8px rgba(255, 193, 7, 0.5);
+      transition: background-color 0.3s ease;
+
+      &:hover:not(:disabled) {
+        background: #ffb300;
+      }
+
+      mat-icon {
+        font-size: 20px;
+      }
+
+      &:disabled {
+        background: #f0e6b9;
+        color: #a57c00;
+        cursor: not-allowed;
+      }
+    }
+  }
+}

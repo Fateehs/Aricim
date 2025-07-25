@@ -14,7 +14,7 @@
 
   <div class="hive-container" cdkDropList (cdkDropListDropped)="drop($event)">
     <div *ngFor="let hive of hives" cdkDrag class="hive-card">
-      <mat-card (click)="goToDetail(hive.id)" [class.edit-mode]="isEditMode">
+      <mat-card (click)="goToDetail(hive.id)" [class.edit-mode]="isEditMode" [class.passive]="hive.status.toLowerCase() === 'passive'">
         <mat-card-title>{{ hive.name }}</mat-card-title>
         <mat-card-content>
           <p><strong>Durum:</strong> {{ hive.status }}</p>

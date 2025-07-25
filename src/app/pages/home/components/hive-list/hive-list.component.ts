@@ -35,16 +35,28 @@ export class HiveListComponent implements OnInit {
     this.isEditMode = !this.isEditMode;
   }
 
+  private sortHives() {
+    if (!this.hives) return;
+    const active = this.hives.filter(h => h.status?.toLowerCase() !== 'passive');
+    const passive = this.hives.filter(h => h.status?.toLowerCase() === 'passive');
+    this.hives = [...active, ...passive];
+  }
+
   ngOnInit(): void {
     this.hives = this.mock ? MOCK_HIVES : [];
     if (!this.mock) {
       this.hiveService.getAllHives().subscribe({
-        next: (data) => { this.hives = data; },
+        next: (data) => {
+          this.hives = data;
+          this.sortHives();
+        },
         error: (err) => {
           console.error('Kovanlar alınamadı:', err);
           this.hives = [];
         }
       });
+    } else {
+      this.sortHives();
     }
   }
 
@@ -57,13 +69,8 @@ export class HiveListComponent implements OnInit {
   }
 
   goToDetail(hiveId: string) {
-    if (this.isEditMode) {
-      return;
-    } else {
-      this.router.navigate(['/hive-detail', hiveId], {
-        state: { mock: this.mock }
-      });
-    }
+    if (this.isEditMode) return;
+    this.router.navigate(['/hive-detail', hiveId], { state: { mock: this.mock } });
   }
 
   openCreateDialog() {
@@ -156,7 +163,8 @@ export class HiveListComponent implements OnInit {
   loadHives() {
     this.hiveService.getAllHives().subscribe(hives => {
       this.hives = hives;
-      this.listChanged.emit(); // This trigger updates dashboard
+      this.sortHives();
+      this.listChanged.emit();
     });
   }
 }

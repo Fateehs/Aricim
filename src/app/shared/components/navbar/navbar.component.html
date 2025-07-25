@@ -4,7 +4,6 @@
 
   <span class="spacer"></span>
 
-  <!-- Geniş ekran menüsü -->
   <nav class="desktop-menu">
     <button mat-button routerLink="/">Anasayfa</button>
     <button mat-button routerLink="/about">Hakkımızda</button>
@@ -13,24 +12,35 @@
 
   <span class="spacer"></span>
 
-  <button mat-raised-button color="primary" (click)="goToLogin()">Giriş Yap</button>
-  <button mat-stroked-button color="primary" (click)="goToRegister()">Kayıt Ol</button>
+  <ng-container *ngIf="!isLoggedIn; else loggedInTemplate">
+    <button mat-raised-button color="primary" (click)="goToLogin()">Giriş Yap</button>
+    <button mat-stroked-button color="primary" (click)="goToRegister()">Kayıt Ol</button>
+  </ng-container>
 
-  <!-- Mobil menü butonu -->
+  <ng-template #loggedInTemplate>
+    <button mat-raised-button color="warn" (click)="logout()">Çıkış Yap</button>
+  </ng-template>
+
   <button mat-icon-button class="mobile-menu-btn" (click)="drawer.toggle()" aria-label="Menüyü aç">
     <mat-icon>menu</mat-icon>
   </button>
 </mat-toolbar>
 
-<!-- Mobil menü drawer -->
 <mat-drawer-container class="mobile-drawer-container">
   <mat-drawer #drawer mode="over" position="end">
     <nav class="mobile-menu">
       <button mat-button routerLink="" (click)="drawer.close()">Anasayfa</button>
       <button mat-button routerLink="/about" (click)="drawer.close()">Hakkımızda</button>
       <button mat-button routerLink="/contact" (click)="drawer.close()">İletişim</button>
-      <button mat-raised-button color="primary" routerLink="/login" (click)="drawer.close()">Giriş Yap</button>
-      <button mat-stroked-button color="primary" routerLink="/register" (click)="drawer.close()">Kayıt Ol</button>
+
+      <ng-container *ngIf="!isLoggedIn; else loggedInMenu">
+        <button mat-raised-button color="primary" routerLink="/login" (click)="drawer.close()">Giriş Yap</button>
+        <button mat-stroked-button color="primary" routerLink="/register" (click)="drawer.close()">Kayıt Ol</button>
+      </ng-container>
+
+      <ng-template #loggedInMenu>
+        <button mat-raised-button color="warn" (click)="logout(); drawer.close()">Çıkış Yap</button>
+      </ng-template>
     </nav>
   </mat-drawer>
 </mat-drawer-container>

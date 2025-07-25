@@ -68,11 +68,23 @@
   }
 }
 
-.hive-card.edit-mode mat-card {
-  cursor: default;
-  /* Düzenleme modunda detay açılmasın */
-  background-color: #fffde7;
-  transition: background-color 0.3s ease;
+mat-card {
+  &.passive {
+    background: #e0e0e0 !important; // açık gri
+    color: #757575 !important; // koyu gri metin
+
+    &:hover {
+      background: #d6d6d6 !important;
+    }
+  }
+}
+
+.hive-card {
+  &.edit-mode mat-card {
+    cursor: default;
+    background-color: #fffde7;
+    transition: background-color 0.3s ease;
+  }
 }
 
 /* Kovan kartlarını saran yapı */
@@ -87,7 +99,6 @@
 .header {
   display: flex;
   justify-content: space-between;
-  /* Başlık solda, buton sağda */
   align-items: center;
   margin-bottom: 1rem;
 }

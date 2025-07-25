@@ -1,1 +1,45 @@
-<p>contact works!</p>
+<div class="contact-container">
+  <h2 class="section-title">Bizimle İletişime Geçin 🐝</h2>
+  <p class="subtitle">
+    Her türlü sorunuz, öneriniz veya iş birliği için aşağıdaki formu kullanabilirsiniz.
+  </p>
+
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
+    <mat-form-field appearance="fill">
+      <mat-label>İsim</mat-label>
+      <input matInput formControlName="name" placeholder="Adınız" />
+      <mat-error *ngIf="contactForm.controls['name'].invalid && contactForm.controls['name'].touched">
+        Lütfen geçerli bir isim girin (en az 2 karakter).
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" placeholder="E-posta adresiniz" />
+      <mat-error *ngIf="contactForm.controls['email'].invalid && contactForm.controls['email'].touched">
+        Lütfen geçerli bir email adresi girin.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Konu</mat-label>
+      <input matInput formControlName="subject" placeholder="Mesaj konusu" />
+      <mat-error *ngIf="contactForm.controls['subject'].invalid && contactForm.controls['subject'].touched">
+        Konu boş olamaz.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Mesaj</mat-label>
+      <textarea matInput formControlName="message" rows="6" placeholder="Mesajınız..."></textarea>
+      <mat-error *ngIf="contactForm.controls['message'].invalid && contactForm.controls['message'].touched">
+        Mesajınız en az 10 karakter olmalı.
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" type="submit" [disabled]="contactForm.invalid || submitting">
+      {{ submitting ? 'Gönderiliyor...' : 'Gönder' }}
+      <mat-icon>send</mat-icon>
+    </button>
+  </form>
+</div>

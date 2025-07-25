@@ -1,7 +1,8 @@
 <div class="hive-detail-container" *ngIf="hive">
   <div class="header" style="display: flex; justify-content: space-between; align-items: center;">
     <h2>{{ hive.name }} Detayları</h2>
-    <button mat-flat-button color="primary" (click)="toggleEditMode()">
+    <!-- Edit butonu sadece giriş yapmışsa göster -->
+    <button mat-flat-button color="primary" (click)="toggleEditMode()" *ngIf="isLoggedIn">
       <mat-icon>{{ editMode ? 'close' : 'edit' }}</mat-icon>
       {{ editMode ? 'İptal' : 'Düzenle' }}
     </button>
@@ -13,37 +14,30 @@
         <label for="type"><strong>Tipi:</strong></label>
         <input id="type" type="text" name="type" [(ngModel)]="editableHive.type" required />
       </div>
-
       <div>
         <label for="createdAt"><strong>Oluşturulma:</strong></label>
         <input id="createdAt" type="date" name="createdAt" [(ngModel)]="editableHive.createdAt" required />
       </div>
-
       <div>
         <label for="lastInspection"><strong>Son Kontrol:</strong></label>
         <input id="lastInspection" type="date" name="lastInspection" [(ngModel)]="editableHive.lastInspection" />
       </div>
-
       <div>
         <label for="nextInspection"><strong>Sonraki Kontrol:</strong></label>
         <input id="nextInspection" type="date" name="nextInspection" [(ngModel)]="editableHive.nextInspection" />
       </div>
-
       <div>
         <label for="queenBirthDate"><strong>Ana Arı Doğum:</strong></label>
         <input id="queenBirthDate" type="date" name="queenBirthDate" [(ngModel)]="editableHive.queenBirthDate" />
       </div>
-
       <div>
         <label for="queenStatus"><strong>Ana Arı Durumu:</strong></label>
         <input id="queenStatus" type="text" name="queenStatus" [(ngModel)]="editableHive.queenStatus" />
       </div>
-
       <div>
         <label for="breed"><strong>Irkı:</strong></label>
         <input id="breed" type="text" name="breed" [(ngModel)]="editableHive.breed" />
       </div>
-
       <div>
         <label for="isMarked"><strong>İşaretli mi:</strong></label>
         <select id="isMarked" name="isMarked" [(ngModel)]="editableHive.isMarked">
@@ -51,54 +45,42 @@
           <option [ngValue]="false">Hayır</option>
         </select>
       </div>
-
       <div>
         <label for="requeeningDate"><strong>Yeniden Ana Verme:</strong></label>
         <input id="requeeningDate" type="date" name="requeeningDate" [(ngModel)]="editableHive.requeeningDate" />
       </div>
-
       <div>
         <label for="combCondition"><strong>Petek Durumu:</strong></label>
         <input id="combCondition" type="text" name="combCondition" [(ngModel)]="editableHive.combCondition" />
       </div>
-
       <div>
         <label for="frameCount"><strong>Çerçeve Sayısı:</strong></label>
         <input id="frameCount" type="number" name="frameCount" [(ngModel)]="editableHive.frameCount" min="0" />
       </div>
-
       <div>
         <label for="honeyAmount"><strong>Bal Miktarı (kg):</strong></label>
-        <input id="honeyAmount" type="number" step="0.01" name="honeyAmount" [(ngModel)]="editableHive.honeyAmount"
-          min="0" />
+        <input id="honeyAmount" type="number" step="0.01" name="honeyAmount" [(ngModel)]="editableHive.honeyAmount" min="0" />
       </div>
-
       <div>
         <label for="harvestedHoney"><strong>Hasat Edilen Bal (kg):</strong></label>
-        <input id="harvestedHoney" type="number" step="0.01" name="harvestedHoney"
-          [(ngModel)]="editableHive.harvestedHoney" min="0" />
+        <input id="harvestedHoney" type="number" step="0.01" name="harvestedHoney" [(ngModel)]="editableHive.harvestedHoney" min="0" />
       </div>
-
       <div>
         <label for="feedingStatus"><strong>Beslenme Durumu:</strong></label>
         <input id="feedingStatus" type="text" name="feedingStatus" [(ngModel)]="editableHive.feedingStatus" />
       </div>
-
       <div>
         <label for="diseaseSymptoms"><strong>Hastalık Belirtileri:</strong></label>
         <input id="diseaseSymptoms" type="text" name="diseaseSymptoms" [(ngModel)]="editableHive.diseaseSymptoms" />
       </div>
-
       <div>
         <label for="beeBehavior"><strong>Arı Davranışı:</strong></label>
         <input id="beeBehavior" type="text" name="beeBehavior" [(ngModel)]="editableHive.beeBehavior" />
       </div>
-
       <div>
         <label for="pests"><strong>Zararlılar:</strong></label>
         <input id="pests" type="text" name="pests" [(ngModel)]="editableHive.pests" />
       </div>
-
       <div style="grid-column: span 2;">
         <label for="notes"><strong>Notlar:</strong></label>
         <textarea id="notes" name="notes" rows="3" [(ngModel)]="editableHive.notes"></textarea>
@@ -121,8 +103,7 @@
       <div><strong>Ana Arı Durumu:</strong> {{ hive.queenStatus }}</div>
       <div><strong>Irkı:</strong> {{ hive.breed }}</div>
       <div><strong>İşaretli mi:</strong> {{ hive.isMarked ? 'Evet' : 'Hayır' }}</div>
-      <div><strong>Yeniden Ana Verme:</strong> {{ hive.requeeningDate ? (hive.requeeningDate | date: 'yyyy-MM-dd') : '-'
-        }}</div>
+      <div><strong>Yeniden Ana Verme:</strong> {{ hive.requeeningDate ? (hive.requeeningDate | date: 'yyyy-MM-dd') : '-' }}</div>
       <div><strong>Petek Durumu:</strong> {{ hive.combCondition }}</div>
       <div><strong>Çerçeve Sayısı:</strong> {{ hive.frameCount }}</div>
       <div><strong>Bal Miktarı:</strong> {{ hive.honeyAmount }} kg</div>

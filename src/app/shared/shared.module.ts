@@ -18,6 +18,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    RouterModule
 
   ],
   exports: [
