@@ -1,27 +1,45 @@
-# Aricim
+# Arıcım 🐝
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.2.
+**Arıcım** is a modern hive management platform designed for beekeepers to efficiently monitor and manage their hives.
 
-## Development server
+## 🚧 Status
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+> This project is currently under active development. Major features and UI enhancements are being implemented. Contributions and feedback are welcome.
 
-## Code scaffolding
+## 🔧 Technologies Used
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Backend**: ASP.NET Core 8 (Layered Architecture)
+- **Frontend**: Angular
+- **Database**: SQL Server + Entity Framework Core
 
-## Build
+## ✨ Key Features (Planned / In Progress)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Hive tracking and status management  
+- Queen bee birth & requeening logs  
+- Frame count, honey harvest & feeding records  
+- Disease symptoms & pest detection logging  
+- Photo upload & general notes per hive  
+- Calendar integration for next inspections  
 
-## Running unit tests
+## 📁 Project Structure
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- `/backend`: .NET 8 Web API with domain-driven design  
+- `/frontend`: Angular-based user interface  
 
-## Running end-to-end tests
+## 📌 Roadmap
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- [x] Basic authentication & authorization  
+- [x] Hive listing & CRUD operations  
+- [ ] Detailed hive profiles with extended metadata  
+- [ ] Inspection scheduling  
+- [ ] Mobile responsive layout  
+- [ ] Multi-user support  
 
-## Further help
+## 📬 Contact
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+For inquiries or suggestions, feel free to reach out at [fatiheselvi@gmail.com](mailto:fatiheselvi@gmail.com)  
+More about the developer: [fatihselvi.com](https://www.fatihselvi.com)
+
+---
+
+> © 2025 Fatih Selvi. All rights reserved.
