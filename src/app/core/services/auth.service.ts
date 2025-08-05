@@ -35,4 +35,12 @@ export class AuthService {
     localStorage.removeItem('token');
     this._isLoggedIn$.next(false);
   }
+
+  verifyEmail(token: string) {
+    return this.http.get<{ message: string }>(
+      `https://localhost:7033/api/auth/verify-email?token=${token}`
+    );
+  }
+
+
 }

@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule) },
   { path: 'register', loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterModule) },
   { path: 'hive-detail/:id', loadChildren: () => import('./pages/hive-detail/hive-detail.module').then(m => m.HiveDetailModule) },
+  { path: 'verify-email', loadChildren: () => import('./pages/verify-email/verify-email.module').then(m => m.VerifyEmailModule) },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 

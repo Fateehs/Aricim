@@ -33,7 +33,7 @@ export class RegisterComponent {
       this.authService.register({ name, email, password }).subscribe({
         next: (res) => {
           console.log('Kayıt başarılı:', res);
-          alert('Kayıt başarılı! Lütfen giriş yapınız.');
+          alert('Kayıt başarılı! Lütfen mailinize gelen doğrulama bağlantısına gidiniz.');
           this.registerForm.reset();
         },
         error: (err) => {
